@@ -86,6 +86,7 @@ export default function ExamenForm({ Submit, modules, chapitres, setInputValue, 
                                         defaultOptions={chapitres}
                                         options={chapitres}
                                         placeholder={"Select chapitre you like..."}
+                                        hidePlaceholderWhenSelected={true}
                                         onChange={field.onChange}
                                         emptyIndicator={
                                             <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
