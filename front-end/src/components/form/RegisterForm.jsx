@@ -62,6 +62,8 @@ export default function RegisterForm() {
                         message: value
                     })
                 })
+            }else{
+                toast.error("Something went wrong")
             }
         }
     };
@@ -136,8 +138,8 @@ export default function RegisterForm() {
                             <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        type="password"
+                                    <PasswordInput
+                                        id="password"
                                         placeholder="Password"
                                         disabled={isSubmitting}
                                         {...field}
@@ -154,8 +156,8 @@ export default function RegisterForm() {
                             <FormItem>
                                 <FormLabel>Password Confirmation</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        type="password"
+                                    <PasswordInput
+                                        id="password"
                                         placeholder="Password Confirmation"
                                         disabled={isSubmitting}
                                         {...field}

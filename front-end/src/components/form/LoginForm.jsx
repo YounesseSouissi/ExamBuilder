@@ -18,6 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { redirectToDashboard } from '../../routes';
 import { toast } from 'sonner';
 import { Label } from '../ui/label';
+import { PasswordInput } from '../ui/password-input';
 const formSchema = z.object({
     email: z.string().email({ message: 'Enter a valid email address' }),
     password: z.string().min(8).max(50),
@@ -105,8 +106,8 @@ export default function LoginForm() {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Input
-                                            type="password"
+                                    <PasswordInput
+                                            id="password"
                                             placeholder="Password"
                                             disabled={isSubmitting}
                                             {...field}
