@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../ui/button';
 import {
     Form,
@@ -18,7 +18,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { redirectToDashboard } from '../../routes';
 import { toast } from 'sonner';
 import { Label } from '../ui/label';
-import { PasswordInput } from '../ui/password-input';
 const formSchema = z.object({
     email: z.string().email({ message: 'Enter a valid email address' }),
     password: z.string().min(8).max(50),
@@ -26,7 +25,7 @@ const formSchema = z.object({
 
 
 export default function LoginForm() {
-    const { login, token, setToken, setUser } = useUserContext()
+    const { login, token,setToken, setUser } = useUserContext()
     const navigate = useNavigate()
     const defaultValues = {
         email: '',
@@ -36,6 +35,11 @@ export default function LoginForm() {
         resolver: zodResolver(formSchema),
         defaultValues
     });
+    useEffect(()=>{
+        if (token) {
+            setToken()
+        }
+    },[])
     const { formState: { isSubmitting } } = form
     const onSubmit = async (values) => {
         try {
@@ -45,6 +49,7 @@ export default function LoginForm() {
             if (status == 200) {
                 navigate(redirectToDashboard(data.data.role))
                 toast.success(data.message)
+                window.dispatchEvent(new Event('storage'));
             }
         } catch ({ response }) {
             if (response.status == 422) {
@@ -53,6 +58,8 @@ export default function LoginForm() {
                         message: value
                     })
                 })
+            }else{
+                toast.error("Something went wrong")
             }
         }
     };
@@ -98,8 +105,8 @@ export default function LoginForm() {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <PasswordInput
-                                            id="password"
+                                        <Input
+                                            type="password"
                                             placeholder="Password"
                                             disabled={isSubmitting}
                                             {...field}
