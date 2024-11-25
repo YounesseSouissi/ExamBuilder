@@ -16,6 +16,7 @@ import { useUserContext } from '../../context/UserContext';
 import { Loader } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { PasswordInput } from '../ui/password-input';
 const formSchema = z.object({
     firstname: z.string().min(2, {
         message: "First name is required",
