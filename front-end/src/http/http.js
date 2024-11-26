@@ -3,8 +3,7 @@ const axiosClient = axios.create({
     baseURL:import.meta.env.VITE_BACK_END_API,
     withCredentials: true,
     headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': 'https://exam-builder-three.vercel.app',
     }
 
 })
