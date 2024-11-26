@@ -1,7 +1,11 @@
 import axios from 'axios'
 const axiosClient = axios.create({
     baseURL:import.meta.env.VITE_BACK_END_API,
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json', 
+    }
 
 })
 axiosClient.interceptors.request.use(function (config) {
